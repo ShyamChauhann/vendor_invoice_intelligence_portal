@@ -9,8 +9,8 @@ from model_selection import (
 )
 
 def main():
-    db_path="project/data/inventory.db"
-    model_dir=Path("project/models")
+    db_path="project/vendor_invoice_intelligence_portal/data/inventory.db"
+    model_dir=Path("/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models")
     model_dir.mkdir(exist_ok=True)
 
     # load data
