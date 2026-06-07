@@ -6,7 +6,7 @@ import joblib
 
 def load_invoice_data():
     conn = sqlite3.connect("/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/data/inventory.db")
-
+    
     query = """
     WITH purchase_agg AS (
     SELECT
@@ -18,7 +18,6 @@ def load_invoice_data():
     FROM purchases p
     GROUP BY p.PONumber
     )
-
 
     SELECT
         vi.PONumber,

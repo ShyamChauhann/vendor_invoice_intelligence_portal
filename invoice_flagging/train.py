@@ -25,7 +25,7 @@ def main():
     X_train_scaled, X_test_scaled = scale_features(
         X_train,
         X_test,
-        '/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models/scaler.pkl'
+        '/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models_prediction/scaler.pkl'
     )
     # Train and evaluate model
     grid_search = train_random_forest(X_train_scaled, y_train)
@@ -40,7 +40,7 @@ def main():
     # Save best model
     joblib.dump(
         grid_search.best_estimator_,
-        "/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models/predict_flag_invoice.pkl"
+        "/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models_prediction/predict_flag_invoice.pkl"
     )
 
 if __name__ == "__main__":

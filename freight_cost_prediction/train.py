@@ -1,4 +1,4 @@
-import joblib
+import joblib # to save output of models as pickle file (.pkl)
 from pathlib import Path
 from data_preprocessing import load_vendor_invoice_data,prepare_features,split_data
 from model_selection import (
@@ -8,9 +8,17 @@ from model_selection import (
     evaluate_model
 )
 
+'''
+1.load
+2.prepare features (x,y)
+3.split data as train test split
+4.select best fit model
+5.print scores (mae,rmse,r2_score) 
+6.save output as .pkl file
+'''
 def main():
     db_path="project/vendor_invoice_intelligence_portal/data/inventory.db"
-    model_dir=Path("/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models")
+    model_dir=Path("/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models_prediction")
     model_dir.mkdir(exist_ok=True)
 
     # load data
@@ -31,7 +39,7 @@ def main():
     results.append(evaluate_model(lr_model,x_test,y_test,"Linear regression"))
     results.append(evaluate_model(dt_model,x_test,y_test,"decision tree regression"))
     results.append(evaluate_model(rf_model,x_test,y_test,"Random forest regression"))
-
+    
     best_model_info=min(results,key=lambda x:x["mae"])
     best_model_name=best_model_info["model_name"]
 
@@ -40,11 +48,17 @@ def main():
         "Linear regression":lr_model,
         "decision tree regression":dt_model,
         "Random forest regression":rf_model
-    }[best_model_name]
-
+    }[best_model_name]  
+    print("best model : ",best_model_name)
+    model_info={
+        "model_name":best_model_name,
+        "mean absolute error":best_model_info['mae'],
+        "rmse":best_model_info['rmse'],
+        "r2_score":best_model_info['r2']
+    }
     # save best model
     model_path=model_dir / "predict_freight_model.pkl"
-    joblib.dump(best_model,model_path)
+    joblib.dump(model_info,model_path) #joblib.dump(best_model,model_path)
 
     print(f"Best model saved : {best_model_name}")
     print(f"Model path : {model_path}")

@@ -1,7 +1,8 @@
 import joblib
 import pandas as pd
 
-MODEL_PATH = "models/predict_flag_invoice.pkl"
+# MODEL_PATH = "models_prediction/predict_flag_invoice.pkl"
+MODEL_PATH = "/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models_prediction/predict_flag_invoice.pkl"
 
 
 def load_model(model_path: str = MODEL_PATH):
