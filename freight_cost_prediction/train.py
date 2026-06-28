@@ -1,4 +1,4 @@
-import joblib # to save output of models as pickle file (.pkl)
+import joblib # to save output of models as pickle file (.pkl) and to load pkl file
 from pathlib import Path
 from data_preprocessing import load_vendor_invoice_data,prepare_features,split_data
 from model_selection import (
@@ -16,6 +16,7 @@ from model_selection import (
 5.print scores (mae,rmse,r2_score) 
 6.save output as .pkl file
 '''
+
 def main():
     db_path="project/vendor_invoice_intelligence_portal/data/inventory.db"
     model_dir=Path("/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models_prediction")
@@ -58,7 +59,7 @@ def main():
     }
     # save best model
     model_path=model_dir / "predict_freight_model.pkl"
-    joblib.dump(model_info,model_path) #joblib.dump(best_model,model_path)
+    joblib.dump(best_model,model_path) #joblib.dump(best_model,model_path)
 
     print(f"Best model saved : {best_model_name}")
     print(f"Model path : {model_path}")

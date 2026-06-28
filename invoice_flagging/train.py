@@ -1,7 +1,6 @@
 from model_evaluation import train_random_forest, evaluate_classifier
 from data_preprocessing import load_invoice_data,apply_labels,split_data,scale_features
 import joblib
-
 # Feature columns
 FEATURES = [
     "invoice_quantity",
@@ -10,10 +9,8 @@ FEATURES = [
     "total_item_quantity",
     "total_item_dollars"
 ]
-
 # Target column
 TARGET = "flag_invoice"
-
 def main():
     # Load data
     df = load_invoice_data()
@@ -36,12 +33,10 @@ def main():
         y_test,
         "Random Forest Classifier"
     )
-
     # Save best model
     joblib.dump(
         grid_search.best_estimator_,
         "/Users/shyamchauhan/Desktop/home/codes/project/vendor_invoice_intelligence_portal/models_prediction/predict_flag_invoice.pkl"
     )
-
 if __name__ == "__main__":
     main()
